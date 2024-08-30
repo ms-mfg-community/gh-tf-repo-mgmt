@@ -32,7 +32,7 @@ jobs:
             tenant-id: ${{ secrets.TENANT_ID }}
             subscription-id: ${{ secrets.SUB1_ID }}
 
-      - name: Set ARM_CLIENT_ID environment variable
+      - name: Set TF Environment Variables
         run: | 
             echo "ARM_CLIENT_ID=${{ secrets.CLIENT_ID }}" >> $GITHUB_ENV
             echo "ARM_SUBSCRIPTION_ID=${{ secrets.SUB1_ID }}" >> $GITHUB_ENV
