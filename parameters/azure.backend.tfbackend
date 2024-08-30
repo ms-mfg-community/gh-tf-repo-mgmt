@@ -1,0 +1,4 @@
+resource_group_name   = "gh-tf-mgmt-1"
+storage_account_name  = "ghtfmgmtwus2"
+container_name        = "tfstate"
+key                   = "github.tfstate"
