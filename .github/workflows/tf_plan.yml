@@ -38,13 +38,16 @@ jobs:
             echo "ARM_SUBSCRIPTION_ID=${{ secrets.SUB1_ID }}" >> $GITHUB_ENV
             echo "ARM_TENANT_ID=${{ secrets.TENANT_ID }}" >> $GITHUB_ENV
             echo "ARM_USE_OIDC=true" >> $GITHUB_ENV
+            echo "GITHUB_APP_ID=${{ secrets.GH_APP_ID }}" >> $GITHUB_ENV
+            echo "GITHUB_APP_INSTALLATION_ID=${{ secrets.GH_APP_INSTALLATION_ID }}" >> $GITHUB_ENV
+            echo "GITHUB_APP_PEM_FILE=${{ secrets.GH_APP_PEM_FILE }}" >> $GITHUB_ENV
 
       - name: Terraform Init
         run: terraform init -backend-config=parameters/azure.backend.tfbackend
         working-directory: scripts
 
       - name: Terraform Plan
-        run: terraform plan -var-file=parameters/repos.dev.tfvars -out=tfplan
+        run: terraform plan -out=tfplan
         working-directory: scripts
 
       - name: Save Plan Output

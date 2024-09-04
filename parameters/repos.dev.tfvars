@@ -10,3 +10,5 @@ github_repositories = {
         visibility = "private"
     }
 }
+
+github_organization = "ms-mfg-community"
