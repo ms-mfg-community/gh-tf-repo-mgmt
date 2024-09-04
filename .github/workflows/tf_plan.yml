@@ -43,7 +43,7 @@ jobs:
             echo "GITHUB_APP_PEM_FILE=${{ secrets.GH_APP_PEM_FILE }}" >> $GITHUB_ENV
 
       - name: Terraform Init
-        run: terraform init -backend-config=parameters/azure.backend.tfbackend
+        run: terraform init -backend-config=../parameters/azure.backend.tfbackend
         working-directory: scripts
 
       - name: Terraform Plan
@@ -52,6 +52,7 @@ jobs:
 
       - name: Save Plan Output
         run: terraform show -json tfplan > tfplan.json
+        working-directory: scripts
 
       - name: Upload Plan Artifact
         uses: actions/upload-artifact@v2
