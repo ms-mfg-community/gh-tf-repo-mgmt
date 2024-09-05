@@ -15,12 +15,12 @@ locals {
   }
 
   github_teams = {
-    team1 = {
+    tf-team1 = {
       team_name = "tf-team1"
       description = "team1 description"
       privacy = "closed"
     },
-    team2 = {
+    tf-team2 = {
       team_name = "tf-team2"
       description = "team2 description"
       privacy = "closed"
