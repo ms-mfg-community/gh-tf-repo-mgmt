@@ -13,3 +13,9 @@ variable "github_app_installation_id" {
   description = "The installation ID of the GitHub App"
   type        = string
 }
+
+variable "github_app_pem_file" {
+  description = "The file path of the Github App PEM key"
+  type        = string
+  default     = "gh_app_key.pem"
+}
