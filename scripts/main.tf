@@ -18,6 +18,6 @@ resource "github_repository" "repositories" {
 resource "github_team_repository" "team_repos" {
   for_each            = local.github_repositories
   team_id             = lookup(github_team.teams, each.value.owner).id
-  repository          = github_repository.this[each.key].name
+  repository          = github_repository.repositories[each.key].name
   permission          = "admin" # Let's set the owner for delegation
 }
