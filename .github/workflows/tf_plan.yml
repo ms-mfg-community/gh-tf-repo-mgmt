@@ -38,20 +38,16 @@ jobs:
             echo "ARM_SUBSCRIPTION_ID=${{ secrets.SUB1_ID }}" >> $GITHUB_ENV
             echo "ARM_TENANT_ID=${{ secrets.TENANT_ID }}" >> $GITHUB_ENV
             echo "ARM_USE_OIDC=true" >> $GITHUB_ENV
-            echo "GITHUB_APP_ID=${{ secrets.GH_APP_ID }}" >> $GITHUB_ENV
-            echo "GITHUB_APP_INSTALLATION_ID=${{ secrets.GH_APP_INSTALLATION_ID }}" >> $GITHUB_ENV
-            echo "${{ secrets.GH_APP_PEM_FILE }}" > gh_app.pem
-            cat gh_app.pem
-            echo "GITHUB_APP_PEM_FILE=gh_app.pem" >> $GITHUB_ENV
-            echo $GITHUB_APP_PEM_FILE
+            echo "${{ secrets.GH_APP_PEM_FILE }}" > gh_app_key.pem
+            echo "GH_APP_PEM_FILE=gh_app_key.pem" >> $GITHUB_ENV
 
       - name: Terraform Init
         run: terraform init -backend-config=../parameters/azure.backend.tfbackend -lock=false
         working-directory: scripts
 
-    #   - name: Terraform Plan
-    #     run: terraform plan -out=tfplan -lock-timeout=15s
-    #     working-directory: scripts
+      - name: Terraform Plan
+        run: terraform plan -var="github_app_id=${{ secrets.GH_APP_ID }}" -var="github_app_installation_id=${{ secrets.GH_APP_INSTALLATION_ID}}" -out=tfplan -lock-timeout=15s
+        working-directory: scripts
 
     #   - name: Save Plan Output
     #     run: terraform show -json tfplan > tfplan.json
