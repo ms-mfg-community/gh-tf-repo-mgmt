@@ -40,9 +40,7 @@ jobs:
             echo "ARM_USE_OIDC=true" >> $GITHUB_ENV
             echo "GITHUB_APP_ID=${{ secrets.GH_APP_ID }}" >> $GITHUB_ENV
             echo "GITHUB_APP_INSTALLATION_ID=${{ secrets.GH_APP_INSTALLATION_ID }}" >> $GITHUB_ENV
-            SINGLE_LINE_PEM=$(echo "${{ secrets.GH_APP_PEM_FILE }}" | tr '\n' '\\n')
-            echo "SINGLE_LINE_PEM=$SINGLE_LINE_PEM" >> $GITHUB_ENV
-            echo -e "${SINGLE_LINE_PEM//\\\\n/$'\n'}" > gh_app.pem
+            echo "${{ secrets.GH_APP_PEM_FILE }}" > gh_app.pem
             echo "GITHUB_APP_PEM_FILE=gh_app.pem" >> $GITHUB_ENV
 
       - name: Terraform Init
