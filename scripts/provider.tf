@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "github" {
-  owner = var.github_organization
+  owner = local.github_organization
   app_auth {}
 }
 
